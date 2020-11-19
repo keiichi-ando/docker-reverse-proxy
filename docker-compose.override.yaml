@@ -1,7 +1,10 @@
 version: "3.2" # docker-compose.yamlのバージョンと合わせる
 
 services:
-  php7: # host.docker.internalを使用したいサービス名
+  web01: # host.docker.internalを使用したいサービス名
+    extra_hosts:
+      - "host.docker.internal:172.101.0.1" # 下のsubnetの指定に合わせる
+  web02: # host.docker.internalを使用したいサービス名
     extra_hosts:
       - "host.docker.internal:172.101.0.1" # 下のsubnetの指定に合わせる
 

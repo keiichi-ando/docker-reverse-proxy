@@ -1,0 +1,14 @@
+{
+  "name": "chibasite-dev",
+
+  "dockerComposeFile": ["../docker-compose.yml"],
+
+  "service": "apache1",
+
+  "workspaceFolder": "/var/www",
+
+  "extensions": [
+  ],
+  "settings": {
+  }
+}

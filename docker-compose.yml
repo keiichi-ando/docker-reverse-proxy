@@ -1,19 +1,31 @@
 version: "3.2"
 services:
-  php7:
-    container_name: php7
-    image: php:apache-buster
-    # network_mode: host
+  web01:
+    container_name: px-apache1
+    image: www-data:apache-buster
     ports:
-      - 7000:80
+      - 7001:80
     volumes:
-      - ./apache2/000-default.conf/:/etc/apache2/sites-available/000-default.conf
-      - ./volume/:/var/www:rw
+      - ./apache2/000-default.conf/:/etc/apache2/sites-available/000-default.conf:ro
+      - ./volume/apache1/:/var/www:rw
+    working_dir: /var/www
+    working_dir: /var/www
+    environment:
+      TZ: Asia/Tokyo
+  web02:
+    container_name: px-apache2
+    image: www-data:apache-buster
+    ports:
+      - 7002:80
+    volumes:
+      - ./apache2/000-default.conf/:/etc/apache2/sites-available/000-default.conf:ro
+      - ./volume/apache2/:/var/www:rw
     working_dir: /var/www
     environment:
       TZ: Asia/Tokyo
 
   reverse-proxy:
+    container_name: px-nginx
     image: nginx
     volumes:
       - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
